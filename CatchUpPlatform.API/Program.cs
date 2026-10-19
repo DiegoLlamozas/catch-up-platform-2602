@@ -1,8 +1,12 @@
+using CatchUpPlatform.API.Shared.Domain.Infrastructure.Interfaces.Asp.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => options.Conventions.Add(new KebabCaseRouteNamingConventions()));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
