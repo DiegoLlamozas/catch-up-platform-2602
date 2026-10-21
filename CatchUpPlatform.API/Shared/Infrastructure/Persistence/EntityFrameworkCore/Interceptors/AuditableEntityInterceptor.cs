@@ -2,7 +2,7 @@ using CatchUpPlatform.API.Shared.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace CatchUpPlatform.API.Shared.Domain.Infrastructure.Persistence.EntityFrameworkCore.Interceptors;
+namespace CatchUpPlatform.API.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors;
 
 public sealed class AuditableEntityInterceptor : SaveChangesInterceptor
 {
