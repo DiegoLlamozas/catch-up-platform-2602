@@ -3,33 +3,37 @@ namespace CatchUpPlatform.API.Shared.Application.Patterns;
 public abstract record Result<TValue, TError>
 {
     public sealed record Success(TValue Value) : Result<TValue, TError>;
-
-    public sealed record Failure(TValue Value) : Result<TValue, TError>;
-
+    public sealed record Failure(TError Error) : Result<TValue, TError>;
+    
     public bool IsSuccess => this is Success;
     public bool IsFailure => this is Failure;
-
+    
     public Result<TNext, TError> Map<TNext>(Func<TValue, TNext> onSuccess) => this switch
     {
-        Success success => new Result<TValue, TError>.Success(onSuccess(success.Value)),
-        Failure failure => new Result<TValue, TError>.Failure(failure.error),
-        _ => throw new InvalidOperationException("Invalid result type")
+        Success success => new Result<TNext, TError>.Success(onSuccess(success.Value)),
+        Failure failure => new Result<TNext, TError>.Failure(failure.Error),
+        _ => throw new InvalidOperationException("Invalid result state.")
     };
 
-    public void Match(Action<TValue> onSuccess, Action<TValue> onFailure)
+    public TResult Fold<TResult>(Func<TValue, TResult> onSuccess, Func<TError, TResult> onFailure) => this switch
+    {
+        Success s => onSuccess(s.Value),
+        Failure f => onFailure(f.Error),
+        _ => throw new InvalidOperationException("Invalid result state.")
+    };
+    
+    public void Match(Action<TValue> onSuccess, Action<TError> onFailure)
     {
         switch (this)
         {
-            case Success success:
-                onSuccess(success.Value);
+            case Success s:
+                onSuccess(s.Value);
                 break;
-            case Failure failure:
-                onFailure(failure.Error);
+            case Failure f:
+                onFailure(f.Error);
                 break;
             default:
-                throw new InvalidOperationException("Invalid result type");
+                throw new InvalidOperationException("Invalid result state.");
         }
     }
-
-
 }
