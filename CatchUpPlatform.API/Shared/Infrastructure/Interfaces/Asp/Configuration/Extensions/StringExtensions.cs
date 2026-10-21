@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace CatchUpPlatform.API.Shared.Domain.Infrastructure.Interfaces.Asp.Configuration.Extensions;
+namespace CatchUpPlatform.API.Shared.Infrastructure.Interfaces.Asp.Configuration.Extensions;
 
 
 public static partial class StringExtensions

@@ -32,4 +32,11 @@
 
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Shared\Domain\Infrastructure\Interfaces\Asp\Configuration\Extensions\" />
+      <Folder Include="Shared\Domain\Infrastructure\Persistence\EntityFrameworkCore\Configuration\Extensions\" />
+      <Folder Include="Shared\Domain\Infrastructure\Persistence\EntityFrameworkCore\Interceptors\" />
+      <Folder Include="Shared\Domain\Infrastructure\Persistence\EntityFrameworkCore\Repositories\" />
+    </ItemGroup>
+
 </Project>
