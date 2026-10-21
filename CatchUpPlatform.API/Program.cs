@@ -1,4 +1,4 @@
-using CatchUpPlatform.API.Shared.Domain.Infrastructure.Interfaces.Asp.Configuration;
+using CatchUpPlatform.API.Shared.Infrastructure.Interfaces.Asp.Configuration;
 using CatchUpPlatform.API.Shared.Infrastructure.Interfaces.Asp.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
